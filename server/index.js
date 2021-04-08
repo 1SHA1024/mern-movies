@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 //general imports:
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,7 +10,7 @@ const db = require('./DB');
 //import router module
 const moviesRouter = require('./routes/movie-router')
 //configuration of the port based on the env
-const PORT = 8080 // process.env.PORT;
+const PORT = process.env.PORT;
 //use of body-parser in order to reach req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded())
@@ -25,3 +27,16 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/movies',moviesRouter)
+
+
+
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    // Handle React routing, return all requests to React app
+    app.get('*', (req, res)=>{
+        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    });
+}

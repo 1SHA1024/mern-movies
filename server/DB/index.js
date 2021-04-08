@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
 
+const dbConnection = process.env.DB;
+
 mongoose
-    .connect('mongodb://127.0.0.1:27017/cinema') //creating the connection to cinema db
+    .connect(dbConnection) //creating the connection to cinema db | local - ('mongodb://127.0.0.1:27017/cinema')
     .catch(error => {                            //error handling
         console.error('Connection error', error.message)
     })
