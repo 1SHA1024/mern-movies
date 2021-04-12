@@ -11,6 +11,9 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
+  "engines" :{
+    "node: "14.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/israelpeled/mern-books.git"
