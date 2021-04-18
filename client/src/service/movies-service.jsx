@@ -1,4 +1,4 @@
-const API = 'http://localhost:8080/movies/'
+const API =process.env.NODE_ENV === 'production'? `https://moviesmern.herokuapp.com`:'http://localhost:8080';
 /**
  * async function that updating the movies state
  * and returns the movies
